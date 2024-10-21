@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 function App() {
-  const [ListId, setListId] = useState([
+  const ListId= [
     { name: "小王", title: "12", id: 1 },
     { name: "小王", title: "24", id: 1 },
     { name: "小王", title: "25", id: 1 },
@@ -9,16 +9,18 @@ function App() {
     { name: "小张", title: "12", id: 2 },
     { name: "小张", title: "13", id: 2 },
     { name: "小李", title: "44", id: 3 },
-    { name: "小李", title: "45", id: 3 },
-    { name: "小李", title: "46", id: 3 },
-  ]);
+    { name: "小李", title: "45", id: 3 }
+  ];
 
-  function screen() {
-    setListId(ListId.filter((product) => product.id === 1));
-  }
-
-  const ListTitle = ListId.map((item) => (
-    <li key={item.id}>
+  const [mapID,setMapID] = useState(null);
+  
+  function screen(id) {
+    setMapID(id);
+  };
+  const filetList = mapID ? ListId.filter((product) => product.id === mapID : ListId);
+  
+  const ListTitle = filetList.map((item,index) => (
+    <li key={index}>
       姓名：{item.name} &nbsp;&nbsp;金额：{item.title}
     </li>
   ));
